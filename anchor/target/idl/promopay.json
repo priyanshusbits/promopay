@@ -1,5 +1,5 @@
 {
-  "address": "DD7jceKYxfaRpd5QiLVWjSPjeQZpDH5fq5nn5smwDwM7",
+  "address": "4LfbU3ApxLM8eADVNyCYZ4c9sLjnd1dS2y8H4FJVYbPE",
   "metadata": {
     "name": "promopay",
     "version": "0.1.0",
@@ -8,54 +8,25 @@
   },
   "instructions": [
     {
-      "name": "close",
-      "discriminator": [98, 165, 201, 177, 108, 65, 206, 96],
+      "name": "create_customer",
+      "discriminator": [
+        120,
+        122,
+        113,
+        216,
+        95,
+        207,
+        252,
+        147
+      ],
       "accounts": [
         {
-          "name": "payer",
+          "name": "customer",
           "writable": true,
           "signer": true
         },
         {
-          "name": "promopay",
-          "writable": true
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "decrement",
-      "discriminator": [106, 227, 168, 59, 248, 27, 150, 101],
-      "accounts": [
-        {
-          "name": "promopay",
-          "writable": true
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "increment",
-      "discriminator": [11, 18, 104, 9, 104, 174, 59, 33],
-      "accounts": [
-        {
-          "name": "promopay",
-          "writable": true
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "initialize",
-      "discriminator": [175, 175, 109, 31, 13, 152, 155, 237],
-      "accounts": [
-        {
           "name": "payer",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "promopay",
           "writable": true,
           "signer": true
         },
@@ -64,40 +35,471 @@
           "address": "11111111111111111111111111111111"
         }
       ],
-      "args": []
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "interests",
+          "type": "string"
+        }
+      ]
     },
     {
-      "name": "set",
-      "discriminator": [198, 51, 53, 241, 116, 29, 126, 194],
+      "name": "create_service_provider",
+      "discriminator": [
+        177,
+        133,
+        131,
+        73,
+        226,
+        57,
+        149,
+        83
+      ],
       "accounts": [
         {
-          "name": "promopay",
-          "writable": true
+          "name": "service_provider",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "code_to_provider",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
         }
       ],
       "args": [
         {
-          "name": "value",
-          "type": "u8"
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "service_type",
+          "type": "string"
+        },
+        {
+          "name": "location",
+          "type": "string"
+        },
+        {
+          "name": "provider_code",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "create_web3_project",
+      "discriminator": [
+        47,
+        224,
+        104,
+        76,
+        210,
+        21,
+        199,
+        8
+      ],
+      "accounts": [
+        {
+          "name": "web3_project",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "project_name",
+          "type": "string"
+        },
+        {
+          "name": "promotional_video",
+          "type": "string"
+        },
+        {
+          "name": "project_link",
+          "type": "string"
+        },
+        {
+          "name": "total_budget",
+          "type": "u64"
+        },
+        {
+          "name": "reward_per_user",
+          "type": "u64"
+        },
+        {
+          "name": "promo_duration",
+          "type": "i64"
+        },
+        {
+          "name": "make_users_eligible_for_airdrops",
+          "type": "bool"
+        },
+        {
+          "name": "promo_type",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "initialize",
+      "discriminator": [
+        175,
+        175,
+        109,
+        31,
+        13,
+        152,
+        155,
+        237
+      ],
+      "accounts": [],
+      "args": []
+    },
+    {
+      "name": "pay_to_provider",
+      "discriminator": [
+        25,
+        13,
+        99,
+        225,
+        111,
+        202,
+        22,
+        55
+      ],
+      "accounts": [
+        {
+          "name": "customer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "service_provider",
+          "writable": true
+        },
+        {
+          "name": "web3_project",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount_paid_by_customer",
+          "type": "u64"
         }
       ]
     }
   ],
   "accounts": [
     {
-      "name": "Promopay",
-      "discriminator": [135, 64, 223, 168, 233, 143, 162, 215]
+      "name": "CodeToProvider",
+      "discriminator": [
+        44,
+        170,
+        162,
+        226,
+        180,
+        4,
+        243,
+        215
+      ]
+    },
+    {
+      "name": "Customer",
+      "discriminator": [
+        112,
+        147,
+        140,
+        31,
+        93,
+        186,
+        103,
+        18
+      ]
+    },
+    {
+      "name": "ServiceProvider",
+      "discriminator": [
+        14,
+        72,
+        40,
+        52,
+        66,
+        51,
+        252,
+        108
+      ]
+    },
+    {
+      "name": "Web3Project",
+      "discriminator": [
+        45,
+        110,
+        165,
+        166,
+        56,
+        10,
+        148,
+        123
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "EmptyName",
+      "msg": "Name cannot be empty"
+    },
+    {
+      "code": 6001,
+      "name": "EmptyInterests",
+      "msg": "Interests cannot be empty"
+    },
+    {
+      "code": 6002,
+      "name": "NameTooLong",
+      "msg": "Name is too long"
+    },
+    {
+      "code": 6003,
+      "name": "InterestsTooLong",
+      "msg": "Interests are too long"
+    },
+    {
+      "code": 6004,
+      "name": "EmptyServiceType",
+      "msg": "Service type cannot be empty"
+    },
+    {
+      "code": 6005,
+      "name": "EmptyLocation",
+      "msg": "Location cannot be empty"
+    },
+    {
+      "code": 6006,
+      "name": "EmptyProviderCode",
+      "msg": "Provider code cannot be empty"
+    },
+    {
+      "code": 6007,
+      "name": "ServiceTypeTooLong",
+      "msg": "Service type is too long"
+    },
+    {
+      "code": 6008,
+      "name": "LocationTooLong",
+      "msg": "Location is too long"
+    },
+    {
+      "code": 6009,
+      "name": "ProviderCodeTooLong",
+      "msg": "Provider code is too long"
+    },
+    {
+      "code": 6010,
+      "name": "EmptyProjectName",
+      "msg": "Project name cannot be empty"
+    },
+    {
+      "code": 6011,
+      "name": "EmptyPromotionalVideo",
+      "msg": "Promotional video cannot be empty"
+    },
+    {
+      "code": 6012,
+      "name": "EmptyProjectLink",
+      "msg": "Project link cannot be empty"
+    },
+    {
+      "code": 6013,
+      "name": "ProjectNameTooLong",
+      "msg": "Project name is too long"
+    },
+    {
+      "code": 6014,
+      "name": "PromotionalVideoTooLong",
+      "msg": "Promotional video is too long"
+    },
+    {
+      "code": 6015,
+      "name": "ProjectLinkTooLong",
+      "msg": "Project link is too long"
+    },
+    {
+      "code": 6016,
+      "name": "InvalidTotalBudget",
+      "msg": "Total budget must be greater than zero"
+    },
+    {
+      "code": 6017,
+      "name": "InvalidRewardPerUser",
+      "msg": "Reward per user must be greater than zero"
+    },
+    {
+      "code": 6018,
+      "name": "InvalidPromoDuration",
+      "msg": "Promotion duration must be greater than zero"
+    },
+    {
+      "code": 6019,
+      "name": "EmptyPromoType",
+      "msg": "Promotion type cannot be empty"
+    },
+    {
+      "code": 6020,
+      "name": "PromoTypeTooLong",
+      "msg": "Promotion type is too long"
+    },
+    {
+      "code": 6021,
+      "name": "InsufficientBudget",
+      "msg": "Insufficient budget for rewards"
+    },
+    {
+      "code": 6022,
+      "name": "InsufficientProjectFunds",
+      "msg": "Insufficient funds in the project"
+    },
+    {
+      "code": 6023,
+      "name": "ArithmeticOverflow",
+      "msg": "Arithmetic overflow occurred"
     }
   ],
   "types": [
     {
-      "name": "Promopay",
+      "name": "CodeToProvider",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "count",
-            "type": "u8"
+            "name": "code",
+            "type": "string"
+          },
+          {
+            "name": "provider_wallet",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Customer",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "interests",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ServiceProvider",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "service_type",
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "type": "string"
+          },
+          {
+            "name": "provider_code",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Web3Project",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "project_wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "project_name",
+            "type": "string"
+          },
+          {
+            "name": "promotional_video",
+            "type": "string"
+          },
+          {
+            "name": "project_link",
+            "type": "string"
+          },
+          {
+            "name": "total_budget",
+            "type": "u64"
+          },
+          {
+            "name": "reward_per_user",
+            "type": "u64"
+          },
+          {
+            "name": "promo_duration",
+            "type": "i64"
+          },
+          {
+            "name": "make_users_eligible_for_airdrops",
+            "type": "bool"
+          },
+          {
+            "name": "promo_type",
+            "type": "string"
+          },
+          {
+            "name": "remaining_balance",
+            "type": "u64"
           }
         ]
       }

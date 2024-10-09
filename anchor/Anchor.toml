@@ -2,11 +2,11 @@
 anchor_version = "0.30.1"
 
 [features]
-seeds = false
+resolution = true
 skip-lint = false
 
 [programs.localnet]
-promopay = "DD7jceKYxfaRpd5QiLVWjSPjeQZpDH5fq5nn5smwDwM7"
+promopay = "4LfbU3ApxLM8eADVNyCYZ4c9sLjnd1dS2y8H4FJVYbPE"
 
 [registry]
 url = "https://api.apr.dev"
